@@ -1,3 +1,6 @@
 body {
-    background:blue
+    background:lightsteelblue
+}
+.messagebody {
+    background:white; width: 500px;
 }

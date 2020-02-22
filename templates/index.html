@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    <h1>test test test</h1>
+    <div class="messagebody">
+    <p>{{ chat }}</p>
+    </div>
+
+    <form method="POST" action="/">
+        <div class="form-group">
+            <input type="text" name="chatfield">
+        </div>
+        <input class="btn btn-primary" type="submit" value="submit">
+    </form>
+    
 </body>
 </html>
