@@ -1,8 +1,20 @@
 {
     "discussion": [
         {
-            "date/time": "22-02-2020 20:17:00",
-            "message": "this is an example"
+            "date/time": "01-03-2020 00:45:52",
+            "message": "fuck all bitches example",
+            "bad_word_info": [
+                {
+                    "replacement": "kitchen",
+                    "original_index": 2,
+                    "severity": 1
+                },
+                {
+                    "replacement": "duck",
+                    "original_index": 0,
+                    "severity": 2
+                }
+            ]
         }
     ]
 }

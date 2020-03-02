@@ -9,7 +9,10 @@
 <body>
     <div class="messagebody">
     {% for x in chat %}
-    <p>{{x}}</p>
+    <p>
+        <span style = "color:grey">{{x["date/time"]}}</span>
+        <span>{{x["message"]}}</span>
+    </p>
     {% endfor %}
     </div>
 
