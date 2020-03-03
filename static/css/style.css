@@ -12,3 +12,12 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+.sev0 {
+    font-style: italic;
+}
+.sev1 {
+    color: orange;
+}
+.sev2 {
+    color:red
+}

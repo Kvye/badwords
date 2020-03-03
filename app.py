@@ -15,7 +15,7 @@ def index():
         chatbadwords = checkbadword(chatfield) # get bad word info from our message
         with open("data/messages.json") as fr:# open messages.json
             discussiondata = json.load(fr)# and load the json from it
-            temp = discussiondata["discussion"]# take just the list
+            temp = discussiondata["discussion"]# take only the chat discussion
             entry = {"date/time" : str(posttime), "message" : chatfield}# create an entry
             entry["bad_word_info"] = chatbadwords # add the bad word info to the entry we're going to add
             temp.append(entry)# append the entry to the list
@@ -25,15 +25,15 @@ def index():
         
         with open("data/messages.json") as fr:
             chatdata = json.load(fr)# assign the newly appended json to something we can return
-            chat = chatdata["discussion"]
-            replacer(chat)
-        return render_template("index.html", chat=chat) # return index.html along with the json file info
+            chat = chatdata["discussion"] # take only the chat discussion
+            replacer(chat) # replace the bad words
+        return render_template("index.html", chat=chat, findseverity=findseverity) # return index.html along with the json file info
     
     with open("data/messages.json") as fr:
             chatdata = json.load(fr)# load up json messages for the chat
             chat = chatdata["discussion"]# take only the chat discussion
-            replaced_chat = replacer(chat)#replacer
-    return render_template("index.html", chat=replaced_chat) # otherwise just GET request for index.html and show chat
+            replacer(chat)# replace the bad words 
+    return render_template("index.html", chat=chat, findseverity=findseverity) # otherwise just GET request for index.html and show chat
 
 def checkbadword(message):
     """checks the message for bad words and returns replacement, index in the message for the bad word and the severity of it"""
@@ -57,8 +57,9 @@ def checkbadword(message):
     return finalresult # return all the bad word info
 
 def replacer(chat):
-    """goes through all the messages and replaces bad words"""
+    """goes through all the messages and replaces bad words and get a list of the words in each message"""
     for discussion in chat: # loop through discussion
+        discussion["words"] = discussion["message"].split() # create a list of the words from the message
         for badwordinfo in discussion["bad_word_info"]: # loop through the bad word info in each message
             index = badwordinfo["original_index"] # take the bad word index for the message
             replacement = badwordinfo["replacement"] # take the bad word replacement for the message
@@ -68,7 +69,17 @@ def replacer(chat):
                 messagecopy[index] = replacement # use the bad word index we got to access the bad word and replace it
                 newmessage = " ".join(messagecopy) # turn the list back into a string
                 discussion["message"] = newmessage # turn the actual message into our copy with the replaced words
-    return chat
+                discussion["words"] = messagecopy # keep the replaced words as a list for use later
+    return chat # return the updated and replaced chat with some additional lists for later
+
+def findseverity(index, badwordinfo):
+    """takes in some bad word info and the index of a list of words to return the severity by
+        comparing the index of the list of words with the bad words index""" 
+    for x in badwordinfo: # loop through badwordinfo
+        severity = x["severity"] # take the severity
+        ind = x["original_index"]# take the index
+        if index == ind: # if the index is the same as the bad word index
+            return severity # return the severity for that bad word
 
 if __name__ == "__main__":
     app.run()

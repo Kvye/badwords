@@ -8,15 +8,29 @@
 </head>
 <body>
     <div class="messagebody">
-    {% for x in chat %}
+    {% for x in chat %} <!--go through every message in the chat discussion-->
     <p>
-        <span style = "color:grey">{{x["date/time"]}}</span>
-        <span>{{x["message"]}}</span>
+        <span style = "color:grey">{{x["date/time"]}}</span> <!--display the date/time for the message-->
+        
+        {% for y in x["words"]%} <!--loop through each word-->
+            {% set severity = findseverity(loop.index - 1, x["bad_word_info"]) %} <!--get severity of each word-->
+            {% if severity == 0 %} <!--if severity is 0-->
+                <span class = "sev0">{{y}}</span> <!--italicize the word-->
+            {% elif severity == 1 %} <!--if severity is 1-->
+                <span class = "sev1">{{y}}</span> <!--make the word orange-->
+            {% elif severity == 2 %} <!--if severity is 2-->
+                <span class = "sev2">{{y}}</span> <!--make the word red-->
+            {% else %} <!--else the word probably isnt a bad word-->
+                <span>{{y}}</span> <!--display the word regularly-->
+            {% endif %}
+
+        {% endfor %}
+
     </p>
     {% endfor %}
     </div>
 
-    <form method="POST" action="/">
+    <form method="POST" action="/"> <!--form that will send POST request from a text field using a button-->
         <div class="form-group">
             <input type="text" name="chatfield">
             <input class="btn btn-primary" type="submit" value="submit">

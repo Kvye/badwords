@@ -1,17 +1,22 @@
 {
     "discussion": [
         {
-            "date/time": "01-03-2020 00:45:52",
-            "message": "fuck all bitches example",
+            "date/time": "03-03-2020 00:25:35",
+            "message": "this is what i call a fucking australian bitch example",
             "bad_word_info": [
                 {
-                    "replacement": "kitchen",
-                    "original_index": 2,
+                    "replacement": "Australia",
+                    "original_index": 7,
+                    "severity": 0
+                },
+                {
+                    "replacement": "Fetch",
+                    "original_index": 8,
                     "severity": 1
                 },
                 {
-                    "replacement": "duck",
-                    "original_index": 0,
+                    "replacement": "funding",
+                    "original_index": 6,
                     "severity": 2
                 }
             ]
