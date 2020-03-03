@@ -1,4 +1,4 @@
-#badwords
+# badwords
 
 A simple web application that displays chat messages and filters out words considered to be "bad" and replaces them with the best alternative using Levenshtein distance.
 
@@ -32,19 +32,19 @@ localhost:5000
 Example Usage
 -------------
 Here you will have a screen that should look something like this:
-![defaultimage](https://github.com/kvye/badwords/tree/master/static/img/default.png)
+![defaultimage](https://github.com/kvye/badwords/blob/master/static/img/Default.png)
 
 At the bottom here is a text field where you can enter your message and submit the message:
-![textfield](https://github.com/kvye/badwords/tree/master/static/img/textfield.png)
+![textfield](https://github.com/kvye/badwords/blob/master/static/img/textfield.png)
 Here is a basic example:
-![firstpost](https://github.com/kvye/badwords/tree/master/static/img/firstpost.png)
+![firstpost](https://github.com/kvye/badwords/blob/master/static/img/firstpost.png)
 
 An example of what happens when you enter a bad word:
-![bwtextfield](https://github.com/kvye/badwords/tree/master/static/img/badwordtextfield.png)
-![bwpost](https://github.com/kvye/badwords/tree/master/static/img/badwordpost.png)
+![bwtextfield](https://github.com/kvye/badwords/blob/master/static/img/badwordtextfield.png)
+![bwpost](https://github.com/kvye/badwords/blob/master/static/img/badwordpost.png)
 
 An example of the way the message will be displayed based on each type of severity:
-![finalpost](https://github.com/kvye/badwords/tree/master/static/img/finalpost.png)
+![finalpost](https://github.com/kvye/badwords/blob/master/static/img/finalpost.png)
 
 When you are done using the web app you can then close the connection to the app by returning back to your terminal and pressing ctrl+C
 
