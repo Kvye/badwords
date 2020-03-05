@@ -1,8 +1,10 @@
+
 from flask import Flask, render_template, request
 import datetime
 import json
 import re
 from similarity.normalized_levenshtein import NormalizedLevenshtein
+from utils.helpers import alphaBet
 app = Flask(__name__)
 normalized_levenshtein = NormalizedLevenshtein()
 
@@ -45,14 +47,14 @@ def checkbadword(message):
         goodwordlist = json.load(fr) # open and get a list of good words
     for x,y in badworddict.items(): # go through both keys and values to get bad word and severity
         for index, z in enumerate(messagelist): # loop through our messagelist and get the index
-            if z == x: # if our message in messagelist is a badword
+            if alphaBet(z.lower()) == alphaBet(x.lower()): # if our message in messagelist is a badword
                 simdict = dict() # make an empty dict to use  
                 for a in goodwordlist: # loop through good words and get the index
                     simnumber = normalized_levenshtein.similarity(z, a) # compare the similarity of our bad word and good word
                     simdict.update({a : simnumber}) # append the good words index and the similarity number 
                 sorteddict = (sorted(simdict.items(), key=lambda v: v[1], reverse=True)) # sort the dict by the similarity number
                 finalsort = sorteddict[0] # get the most similar good word so we can replace it
-                result = {"replacement": str(finalsort[0]), "original_index": index, "severity": y}
+                result = {"replacement": str(finalsort[0].lower()), "original_index": index, "severity": y}
                 finalresult.append(result) # append our result to finalresult
     return finalresult # return all the bad word info
 
