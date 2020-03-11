@@ -54,4 +54,7 @@ Built with
 
 Testing
 -------
-Work in progress
+```
+#repository root
+pytest
+```
